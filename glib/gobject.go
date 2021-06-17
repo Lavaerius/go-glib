@@ -244,7 +244,7 @@ func (v *Object) ListInterfaces() []string {
 	}
 	defer C.g_free((C.gpointer)(ifaces))
 	out := make([]string, int(size))
-	for _, t := range (*[1 << 30]int)(unsafe.Pointer(ifaces))[:size:size] {
+	for _, t := range (*[1 << 30]uint)(unsafe.Pointer(ifaces))[:size:size] {
 		out = append(out, Type(t).Name())
 	}
 	return out

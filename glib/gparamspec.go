@@ -69,7 +69,7 @@ type FlagsValue struct {
 func (p *ParamSpec) GetFlagValues() []*FlagsValue {
 	var gSize C.guint
 	gFlags := C.getParamSpecFlags(p.paramSpec, &gSize)
-	size := int(gSize)
+	size := uint(gSize)
 	out := make([]*FlagsValue, size)
 	for idx, flag := range (*[1 << 30]C.GFlagsValue)(unsafe.Pointer(gFlags))[:size:size] {
 		out[idx] = &FlagsValue{
