@@ -46,7 +46,7 @@ func (o *ObjectClass) ListProperties() []*ParamSpec {
 	}
 	defer C.g_free((C.gpointer)(props))
 	out := make([]*ParamSpec, 0)
-	for _, prop := range (*[1 << 30]*C.GParamSpecUInt)(unsafe.Pointer(props))[:size:size] {
+	for _, prop := range (*[1 << 30]*C.GParamSpecLong)(unsafe.Pointer(props))[:size:size] {
 		out = append(out, ToParamSpec(unsafe.Pointer(prop)))
 	}
 	return out
